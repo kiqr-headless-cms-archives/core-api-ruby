@@ -14,10 +14,10 @@ require 'date'
 require 'time'
 
 module Kiqr::CoreApi
-  class User
+  class Schema
     attr_accessor :id
 
-    attr_accessor :name
+    attr_accessor :commit_message
 
     attr_accessor :updated_at
 
@@ -27,7 +27,7 @@ module Kiqr::CoreApi
     def self.attribute_map
       {
         :'id' => :'id',
-        :'name' => :'name',
+        :'commit_message' => :'commitMessage',
         :'updated_at' => :'updatedAt',
         :'created_at' => :'createdAt'
       }
@@ -42,7 +42,7 @@ module Kiqr::CoreApi
     def self.openapi_types
       {
         :'id' => :'String',
-        :'name' => :'String',
+        :'commit_message' => :'String',
         :'updated_at' => :'Time',
         :'created_at' => :'Time'
       }
@@ -58,13 +58,13 @@ module Kiqr::CoreApi
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Kiqr::CoreApi::User` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Kiqr::CoreApi::Schema` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Kiqr::CoreApi::User`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Kiqr::CoreApi::Schema`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -73,8 +73,8 @@ module Kiqr::CoreApi
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'commit_message')
+        self.commit_message = attributes[:'commit_message']
       end
 
       if attributes.key?(:'updated_at')
@@ -94,8 +94,8 @@ module Kiqr::CoreApi
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      if @commit_message.nil?
+        invalid_properties.push('invalid value for "commit_message", commit_message cannot be nil.')
       end
 
       if @updated_at.nil?
@@ -113,7 +113,7 @@ module Kiqr::CoreApi
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
-      return false if @name.nil?
+      return false if @commit_message.nil?
       return false if @updated_at.nil?
       return false if @created_at.nil?
       true
@@ -125,7 +125,7 @@ module Kiqr::CoreApi
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          name == o.name &&
+          commit_message == o.commit_message &&
           updated_at == o.updated_at &&
           created_at == o.created_at
     end
@@ -139,7 +139,7 @@ module Kiqr::CoreApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, updated_at, created_at].hash
+      [id, commit_message, updated_at, created_at].hash
     end
 
     # Builds the object from hash
