@@ -17,7 +17,7 @@ require 'kiqr-core-api'
 instance = Kiqr::CoreApi::User.new(
   id: user_zWNY2gOL1xwrYuRqXQnjJZyP,
   name: David Specimen,
-  updated_at: 2023-02-13T18:57:03Z,
+  updated_at: 2023-01-17T09:36:08Z,
   created_at: 2023-01-17T09:36:08Z
 )
 ```

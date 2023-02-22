@@ -14,22 +14,16 @@ require 'date'
 require 'time'
 
 module Kiqr::CoreApi
-  class Project
-    attr_accessor :id
-
+  class ContentType
     attr_accessor :name
 
-    attr_accessor :updated_at
-
-    attr_accessor :created_at
+    attr_accessor :fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
         :'name' => :'name',
-        :'updated_at' => :'updatedAt',
-        :'created_at' => :'createdAt'
+        :'fields' => :'fields'
       }
     end
 
@@ -41,10 +35,8 @@ module Kiqr::CoreApi
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
         :'name' => :'String',
-        :'updated_at' => :'Time',
-        :'created_at' => :'Time'
+        :'fields' => :'Hash<String, Field>'
       }
     end
 
@@ -58,31 +50,25 @@ module Kiqr::CoreApi
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Kiqr::CoreApi::Project` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Kiqr::CoreApi::ContentType` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Kiqr::CoreApi::Project`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Kiqr::CoreApi::ContentType`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
+      if attributes.key?(:'fields')
+        if (value = attributes[:'fields']).is_a?(Hash)
+          self.fields = value
+        end
       end
     end
 
@@ -90,20 +76,8 @@ module Kiqr::CoreApi
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       if @name.nil?
         invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push('invalid value for "updated_at", updated_at cannot be nil.')
-      end
-
-      if @created_at.nil?
-        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
       end
 
       invalid_properties
@@ -112,10 +86,7 @@ module Kiqr::CoreApi
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
       return false if @name.nil?
-      return false if @updated_at.nil?
-      return false if @created_at.nil?
       true
     end
 
@@ -124,10 +95,8 @@ module Kiqr::CoreApi
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
           name == o.name &&
-          updated_at == o.updated_at &&
-          created_at == o.created_at
+          fields == o.fields
     end
 
     # @see the `==` method
@@ -139,7 +108,7 @@ module Kiqr::CoreApi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, updated_at, created_at].hash
+      [name, fields].hash
     end
 
     # Builds the object from hash
