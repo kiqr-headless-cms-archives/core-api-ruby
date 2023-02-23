@@ -33,6 +33,4 @@ lib/kiqr-core-api/models/user.rb
 lib/kiqr-core-api/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/content_type_spec.rb
-spec/models/field_spec.rb
 spec/spec_helper.rb
