@@ -20,8 +20,8 @@ require 'time'
 require 'kiqr-core-api'
 # setup authorization
 Kiqr::CoreApi.configure do |config|
-  # Configure Bearer authorization: BearerAuth
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
 end
 
 api_instance = Kiqr::CoreApi::UserApi.new
@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
